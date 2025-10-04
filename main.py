@@ -47,6 +47,7 @@ async def main():
     musicLength = pyray.get_music_time_length(music)
     currentTimePlayed = 0
     lastTimePlayed = 0
+    pyray.set_music_volume(music, param['volume'])
 
     # font.
     font = pyray.load_font_ex(f"{pathMain}/font/{param['font']}.ttf", param["sizeName"][1], None, 0)
@@ -75,6 +76,7 @@ async def main():
             pyray.play_music_stream(music)
             musicLength = pyray.get_music_time_length(music)
             currentTimePlayed = 0
+            pyray.set_music_volume(music, param['volume'])
 
             # load illu.
             if currentMusicTexture is not None:
