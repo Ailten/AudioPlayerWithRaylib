@@ -49,6 +49,10 @@ async def main():
     lastTimePlayed = 0
     pyray.set_music_volume(music, param['volume'])
 
+    # sprite music.
+    potentialPathMusicTexture = f"{pathMain}/spryte/{musicsNameFiles[musicIndex]}.png"
+    currentMusicTexture = pyray.load_texture(potentialPathMusicTexture) if isHasMusicTexture(potentialPathMusicTexture) else None
+
     # font.
     font = pyray.load_font_ex(f"{pathMain}/font/{param['font']}.ttf", param["sizeName"][1], None, 0)
     posName = pyray.Vector2(param["posName"][0], param["posName"][1])
@@ -81,7 +85,7 @@ async def main():
             # load illu.
             if currentMusicTexture is not None:
                 pyray.unload_texture(currentMusicTexture)
-            potentialPathMusicTexture  = f"{pathMain}/spryte/{musicsNameFiles[musicIndex]}.png"
+            potentialPathMusicTexture = f"{pathMain}/spryte/{musicsNameFiles[musicIndex]}.png"
             currentMusicTexture = pyray.load_texture(potentialPathMusicTexture) if isHasMusicTexture(potentialPathMusicTexture) else None
 
         lastTimePlayed = currentTimePlayed
