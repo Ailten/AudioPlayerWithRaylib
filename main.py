@@ -63,6 +63,23 @@ async def main():
         param["textColor"][3]
     )
 
+    # progress bar.
+    posProgressBar = pyray.Vector2(param["posProgressBar"][0], param["posProgressBar"][1])
+    colorProgressBar = pyray.Color(
+        param["colorProgressBar"][0], 
+        param["colorProgressBar"][1], 
+        param["colorProgressBar"][2], 
+        param["colorProgressBar"][3]
+    )
+    backgroundColorProgressBar = pyray.Color(
+        param["backgroundColorProgressBar"][0], 
+        param["backgroundColorProgressBar"][1], 
+        param["backgroundColorProgressBar"][2], 
+        param["backgroundColorProgressBar"][3]
+    )
+    sizeProgressBar = pyray.Vector2(param["sizeProgressBar"][0], param["sizeProgressBar"][1])
+    sizeProgressBarScaled = pyray.Vector2(sizeProgressBar.x, 0)
+
     # loop update.
     while not pyray.window_should_close():
 
@@ -89,10 +106,28 @@ async def main():
             currentMusicTexture = pyray.load_texture(potentialPathMusicTexture) if isHasMusicTexture(potentialPathMusicTexture) else None
 
         lastTimePlayed = currentTimePlayed
+        interpolationMusic = (float)(currentTimePlayed) / pyray.get_music_time_length(music)
 
         # draw phase start. ------>
         pyray.begin_drawing()
         pyray.clear_background(backgroundColor)
+
+        # draw progress bar.
+        pyray.draw_rectangle(  # back.
+            (int)(posProgressBar.x), (int)(posProgressBar.y),
+            (int)(sizeProgressBar.x), (int)(sizeProgressBar.y),
+            backgroundColorProgressBar
+        )
+        pyray.draw_rectangle(  # progress.
+            (int)(posProgressBar.x), (int)(posProgressBar.y),
+            (int)(sizeProgressBar.x * (interpolationMusic)), (int)(sizeProgressBar.y),
+            colorProgressBar
+        )
+        pyray.draw_rectangle_lines(  # border.
+            (int)(posProgressBar.x), (int)(posProgressBar.y),
+            (int)(sizeProgressBar.x), (int)(sizeProgressBar.y),
+            colorProgressBar
+        )
 
         # draw background illu.
         pyray.draw_texture_pro(
