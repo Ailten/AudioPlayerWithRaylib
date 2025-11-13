@@ -2,6 +2,11 @@ import pyray # python3 -m pip install raylib==5.5.0.3
 import asyncio
 from script.function import * 
 import pathlib
+import os
+
+
+# name the process for find it easily on cmd.
+os.environ["PIPEWIRE_CLIENT_NAME"] = "Ailten_AudioPlayer"
 
 
 # ----------> Main function.
