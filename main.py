@@ -18,7 +18,7 @@ async def main():
     param = getJsonObj(pathMain)
 
     # get list path of mp3.
-    musicsNameFiles = getAllFilesName(param["musicFolderPath"])
+    musicsNameFiles = getAllFilesName(f"{pathMain}/{param['musicFolderPath']}")
     musicIndex = 0
 
     # init window.
@@ -42,7 +42,7 @@ async def main():
     illuDest = pyray.Rectangle(param["posIllu"][0], param["posIllu"][1], param["sizeIllu"][0], param["sizeIllu"][1])
 
     # music.
-    music = pyray.load_music_stream(f"{param['musicFolderPath']}/{musicsNameFiles[musicIndex]}.mp3")
+    music = pyray.load_music_stream(f"{pathMain}/{param['musicFolderPath']}/{musicsNameFiles[musicIndex]}.mp3")
     pyray.play_music_stream(music)
     musicLength = pyray.get_music_time_length(music)
     currentTimePlayed = 0

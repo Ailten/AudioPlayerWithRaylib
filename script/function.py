@@ -37,10 +37,6 @@ def getAllFilesName(pathFolder: str):
         n.suffix == ".mp3"
     )]
 
-    print(output)
-
-
-
     return output
 
 
