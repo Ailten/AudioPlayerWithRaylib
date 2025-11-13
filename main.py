@@ -98,7 +98,7 @@ async def main():
             # load and play the next music.
             pyray.unload_music_stream(music)
             musicIndex = (musicIndex + 1) % len(musicsNameFiles)
-            music = pyray.load_music_stream(f"{param['musicFolderPath']}/{musicsNameFiles[musicIndex]}.mp3")
+            music = pyray.load_music_stream(f"{pathMain}/{param['musicFolderPath']}/{musicsNameFiles[musicIndex]}.mp3")
             pyray.play_music_stream(music)
             musicLength = pyray.get_music_time_length(music)
             currentTimePlayed = 0
